@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Projecto_vet</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="map_id">20fd5883661fd478</string>
 </resources>

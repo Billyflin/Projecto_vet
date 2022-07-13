@@ -1,25 +1,20 @@
 package com.example.projecto_vet
 
-import android.Manifest
 import android.Manifest.*
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.example.projecto_vet.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PointOfInterest
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPoiClickListener {
@@ -53,10 +48,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPoiCli
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         // Add a marker in Sydney and move the camera
         val baquedano = LatLng(-33.437148, -70.632175)
         mMap.addMarker(MarkerOptions().position(baquedano).title("Marcador en baquedano"))
+        mMap.uiSettings.isZoomControlsEnabled=true
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.my_map_style))
+//        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.string.map_id))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(baquedano, 12f), 4000, null)
         enableLocation()
         mMap.setOnPoiClickListener(this)
